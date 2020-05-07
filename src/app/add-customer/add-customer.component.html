@@ -1,0 +1,47 @@
+<div class="container">
+    <h2 class="mt-3">Add Customer</h2>
+    <div class="form-wrapper border border-secondary rounded p-4">
+        <form [formGroup]="customerForm" (ngSubmit)="submitCustomer()">
+            <div class="alert alert-success" role="alert" *ngIf="addCustomerSuccess != ''">
+                {{addCustomerSuccess}}
+            </div>
+            <div class="form-group">
+                <!-- <label for="firstnameInput">First Name</label>
+                <input type="text" class="form-control" id="firstnameInput" formControlName="FirstName"> -->
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label matInput>First Name</mat-label>
+                    <input type="text" matInput id="firstnameInput" formControlName="FirstName" required>
+                    <mat-error *ngIf="customerForm.value.FirstName == ''">First Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <!-- <label for="lastnameInput">Last Name</label>
+                <input type="text" class="form-control" id="lastnameInput" formControlName="LastName"> -->
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label matInput>Last Name</mat-label>
+                    <input type="text" matInput id="lastnameInput" formControlName="LastName" required>
+                    <mat-error *ngIf="customerForm.value.LastName == ''">Last Name is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <!-- <label for="addressInput">Address</label>
+                <input type="text" class="form-control" id="addressInput" formControlName="Address"> -->
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label matInput>Address</mat-label>
+                    <input type="text" matInput id="addressInput" formControlName="Address" required>
+                    <mat-error *ngIf="customerForm.value.Address == ''">Address is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <!-- <label for="phoneInput">Phone Number</label>
+                <input type="tel" class="form-control" id="phoneInput" formControlName="Phonenumber"> -->
+                <mat-form-field appearance="standard" class="w-100">
+                    <mat-label matInput>Phone Number</mat-label>
+                    <input matInput id="phoneInput" formControlName="Phonenumber" required>
+                    <mat-error *ngIf="customerForm.value.Phonenumber == ''">Phone Number is required</mat-error>
+                </mat-form-field>
+            </div>
+            <button type="submit" mat-raised-button color="primary" [disabled]="customerForm.invalid">Submit</button>
+        </form>
+    </div>
+</div>

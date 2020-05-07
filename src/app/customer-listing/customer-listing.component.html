@@ -1,0 +1,88 @@
+<div class="listing-wrapper p-4">
+    <h2 class="text-center mb-4">Customer Listing Page</h2>
+    <div class="row no-gutters justify-content-between">
+        <!-- <div class="mdc-form-field">
+            <span class="pr-3">Search customer</span>
+            <label class="mdc-text-field mdc-text-field--fullwidth">
+                <div class="mdc-text-field__ripple"></div>
+                <input class="mdc-text-field__input"
+                       type="text"
+                       placeholder="Last Name"
+                       aria-label="Full-Width Text Field" [(ngModel)]="searchLname">
+                <div class="mdc-line-ripple"></div>
+    
+              </label>
+              <button type="button" class="btn btn-primary ml-3" (click)="searchCustomer()">Search</button>
+        </div> -->
+        <div>
+            <mat-form-field class="float-left w-75" hintLabel="Enter last name" appearance="standard">
+                <mat-label>Search customer</mat-label>
+                <input matInput #input  maxlength="10" placeholder="Ex. Doe" [(ngModel)]="searchLname">
+                <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field>
+            <button class="float-right w-25 mt-3" mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="searchCustomer()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+        <div>
+            <a mat-raised-button [routerLink]="['/add-customer']">Add Customer</a>
+            <!-- <button mat-raised-button  (click)="addCustomer()">Add Customer</button> -->
+        </div>
+    </div>
+    
+    <!-- <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Sl No.</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customerList; index as i">
+            <th scope="row">{{i}}</th>
+            <td>{{customer.FirstName}}</td>
+            <td>{{customer.LastName}}</td>
+            <td>{{customer.Address}}</td>
+            <td>{{customer.Phonenumber}}</td>
+          </tr>
+        </tbody>
+    </table> -->
+    <table mat-table [dataSource]="customerList">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Sl. No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="FirstName">
+            <th mat-header-cell *matHeaderCellDef> First Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="LastName">
+            <th mat-header-cell *matHeaderCellDef> Last Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.Address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Phonenumber">
+            <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+            <td mat-cell *matCellDef="let element"> {{element.Phonenumber}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: tableColumns;"></tr>
+    </table>
+    
+</div>
+<script>mdc.autoInit()</script> 

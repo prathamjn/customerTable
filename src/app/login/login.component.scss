@@ -1,0 +1,16 @@
+.login-wrapper {
+    .login-container {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%,-50%);
+
+     display: flex;
+     flex-wrap: wrap;
+     flex-direction: column; 
+     align-items: center;
+     border: 1px solid;
+     border-radius: 6px;
+     padding: 4%;
+    }
+}
