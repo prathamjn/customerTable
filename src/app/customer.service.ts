@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CustomerService {
   reqHeaders = new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer TempAuthToken1234'
+    'Authorization': 'Bearer TempAuth1234'
   })
   constructor(private httpClient: HttpClient, private configService: ConfigService) { }
 
