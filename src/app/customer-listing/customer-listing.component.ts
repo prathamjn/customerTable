@@ -24,13 +24,18 @@ export class CustomerListingComponent implements OnInit {
 
   searchCustomer() {
     this.spinner.show();
-    this.customerService.getSpecificCustomer(this.searchLname).subscribe((data) => {
-      this.spinner.hide();
-      this.customerList = data;
-      this.customerList.map((customer, index) => {
-        customer['position'] = index + 1;
+    if(this.searchLname == '') {
+      this.showAllCustomers();
+    } else {
+      this.customerService.getSpecificCustomer(this.searchLname).subscribe((data) => {
+        this.spinner.hide();
+        this.customerList = data;
+        this.customerList.map((customer, index) => {
+          customer['position'] = index + 1;
+        });
       });
-    });
+    }
+    
   }
 
   showAddForm() {
