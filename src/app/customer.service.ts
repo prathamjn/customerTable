@@ -23,8 +23,23 @@ export class CustomerService {
   }
 
   public addCustomer(customerObj) {
-    this.reqHeaders['transactionID'] = Math.random().toString(36).substring(12);
-    this.reqHeaders['agentID'] = Math.random().toString(36).substring(5);
-    return this.httpClient.post(`${this.configService.config.apiUrl}Customer`, customerObj, { headers: this.reqHeaders });
+    console.log('Test', Math.random().toString(36).substring(12));
+    const addHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer TempAuth1234',
+      'transactionID': this.makeid(12),
+      'agentID': Math.random().toString(36).substring(5)
+    })
+    return this.httpClient.post(`${this.configService.config.apiUrl}Customer`, customerObj, { headers: addHeaders });
   }
+
+  public makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
 }

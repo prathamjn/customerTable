@@ -5,6 +5,9 @@
             <div class="alert alert-success" role="alert" *ngIf="addCustomerSuccess != ''">
                 {{addCustomerSuccess}}
             </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errorMsg != ''">
+                {{errorMsg}}
+            </div>
             <div class="form-group">
                 <!-- <label for="firstnameInput">First Name</label>
                 <input type="text" class="form-control" id="firstnameInput" formControlName="FirstName"> -->

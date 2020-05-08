@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { CustomerListingComponent } from './customer-listing/customer-listing.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { ConfigService } from './config.service';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 export const configFactory = (configService: ConfigService) => {
   return () => configService.loadConfig();
 };
@@ -30,7 +30,8 @@ export const configFactory = (configService: ConfigService) => {
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   providers: [
     {
