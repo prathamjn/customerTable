@@ -1,37 +1,30 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
+import { ConfigService } from './config.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-
-  constructor(private httpClient: HttpClient) { }
+  reqHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer TempAuthToken1234'
+  })
+  constructor(private httpClient: HttpClient, private configService: ConfigService) { }
 
   public getAllCustomers() {
-    const reqHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer TempAuthToken1234'
-    })
-    return this.httpClient.get(`https://testwebapiabhi.azurewebsites.net/api/Customer`, { headers: reqHeaders });
+    console.log('URL', this.configService.config);
+    return this.httpClient.get(`${this.configService.config.apiUrl}Customer`, { headers: this.reqHeaders });
   }
 
   public getSpecificCustomer(cusLname) {
-    const reqHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer TempAuthToken1234'
-    });
-    return this.httpClient.get(`https://testwebapiabhi.azurewebsites.net/api/Customer?lastName=` + cusLname, { headers: reqHeaders });
-
+    return this.httpClient.get(`${this.configService.config.apiUrl}Customer?lastName=` + cusLname, { headers: this.reqHeaders });
   }
 
   public addCustomer(customerObj) {
-    const reqHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer TempAuthToken1234',
-      'transactionID': Math.random().toString(36).substring(12),
-      'agentID':  Math.random().toString(36).substring(5),
-    });
-    return this.httpClient.post(`https://testwebapiabhi.azurewebsites.net/api/Customer`, customerObj, { headers: reqHeaders });
+    this.reqHeaders['transactionID'] = Math.random().toString(36).substring(12);
+    this.reqHeaders['agentID'] = Math.random().toString(36).substring(5);
+    return this.httpClient.post(`${this.configService.config.apiUrl}Customer`, customerObj, { headers: this.reqHeaders });
   }
 }
